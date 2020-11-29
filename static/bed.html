@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <meta name="description" content="Bootstrap Admin App + jQuery">
+   <meta name="keywords" content="app, responsive, jquery, bootstrap, dashboard, admin">
+   <title>OOSE Lab Project</title>
+   <link rel = "icon" href ="DTU,_Delhi_official_logo.png" type = "image/x-icon">
+   <!-- =============== VENDOR STYLES ===============-->
+   <!-- FONT AWESOME-->
+   <link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css">
+   <!-- SIMPLE LINE ICONS-->
+   <link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css">
+   <!-- ANIMATE.CSS-->
+   <link rel="stylesheet" href="vendor/animate.css/animate.min.css">
+   <!-- WHIRL (spinners)-->
+   <link rel="stylesheet" href="vendor/whirl/dist/whirl.css">
+    <link rel="stylesheet" href="vendor/sweetalert/dist/sweetalert.css">
+     <!-- DATATABLES-->
+   <link rel="stylesheet" href="vendor/datatables-colvis/css/dataTables.colVis.css">
+   <link rel="stylesheet" href="vendor/datatables/media/css/dataTables.bootstrap.css">
+   <link rel="stylesheet" href="vendor/dataTables.fontAwesome/index.css">
+   <!-- =============== PAGE VENDOR STYLES ===============-->
+   <!-- =============== BOOTSTRAP STYLES ===============-->
+   <link rel="stylesheet" href="app/css/bootstrap.css" id="bscss">
+   <!-- =============== APP STYLES ===============-->
+   <link rel="stylesheet" href="app/css/app.css" id="maincss">
+<style>
+      body {
+  background-image: url('Untitled.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 40% 100%;
+  background-position: center;
+  right: 100;
+}
+   </style>
+</head>
+
+<body class="layout-h", style="background-color:black;">
+   <div class="wrapper">
+      <!-- top navbar-->
+      <header class="topnavbar-wrapper">
+         <!-- START Top Navbar-->
+         <nav role="navigation" class="navbar topnavbar">
+            <!-- START navbar header-->
+            <div class="navbar-header">
+               <a href="/" class="navbar-brand">
+                  <div class="brand-logo">
+                     Hospital Patient Management System
+                  </div>
+                  <div class="brand-logo-collapsed">
+                     <img src="img/logo-single.png" alt="App Logo" class="img-responsive">
+                  </div>
+               </a>
+            </div>
+            <!-- END navbar header-->
+            <!-- START Nav wrapper-->
+            <div class="nav-wrapper">
+
+            </div>
+            <!-- END Nav wrapper-->
+            <!-- START Search form-->
+            <form role="search" action="search.html" class="navbar-form">
+               <div class="form-group has-feedback">
+                  <input type="text" placeholder="Type and hit enter ..." class="form-control">
+                  <div data-search-dismiss="" class="fa fa-times form-control-feedback"></div>
+               </div>
+               <button type="submit" class="hidden btn btn-default">Submit</button>
+            </form>
+            <!-- END Search form-->
+         </nav>
+         <!-- END Top Navbar-->
+      </header>
+      <!-- sidebar-->
+
+      <!-- offsidebar-->
+
+      <!-- Main section-->
+      <section>
+         <!-- Page content-->
+         <div class="content-wrapper">
+            <div class="content-heading">
+               <!-- START Language list-->
+
+               <!-- END Language list    -->
+               Bed
+               <small data-localize="dashboard.WELCOME"></small>
+               </div>
+            </div>
+           <div class="row">
+                  <div class="col-lg-12">
+                     <div class="panel panel-default"  style="padding: 15px;">
+
+                        <div class="table-responsive">
+                           <table id="datatable4" class="table table-striped">
+                              <thead>
+                                 <tr>
+                                    <th style="width:20%">Bed ID</th>
+                                    <th style="width:25%">Bed status</th>
+									<th style="width:20%">Patient ID</th>
+                                 </tr>
+                              </thead>
+                              <tbody></tbody>
+                           </table>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+         </div>
+      </section>
+
+   </div>
+   <!-- =============== VENDOR SCRIPTS ===============-->
+   <!-- MODERNIZR-->
+   <script src="vendor/modernizr/modernizr.custom.js"></script>
+   <!-- JQUERY-->
+   <script src="vendor/jquery/dist/jquery.js"></script>
+   <!-- BOOTSTRAP-->
+   <script src="vendor/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="vendor/datatables/media/js/jquery.dataTables.min.js"></script>
+   <script src="vendor/datatables-colvis/js/dataTables.colVis.js"></script>
+   <script src="vendor/datatables/media/js/dataTables.bootstrap.js"></script>
+   <script src="vendor/serialize/jquery.serializejson.js"></script>
+   <!-- STORAGE API-->
+   <script src="vendor/jQuery-Storage-API/jquery.storageapi.js"></script>
+   <!-- JQUERY EASING-->
+   <script src="vendor/jquery.easing/js/jquery.easing.js"></script>
+   <!-- ANIMO-->
+   <script src="vendor/animo.js/animo.js"></script>
+    <script src="vendor/parsley/parsley.min.js"></script>
+       <script src="vendor/sweetalert/dist/sweetalert.min.js"></script>
+   <!-- LOCALIZE-->
+   <script src="vendor/jquery-localize-i18n/dist/jquery.localize.js"></script>
+   <!-- =============== PAGE VENDOR SCRIPTS ===============-->
+   <!-- =============== APP SCRIPTS ===============-->
+   <script src="app/js/app.js"></script>
+  <script> $(document).ready(function () {
+    var doc = localStorage.getItem('doctor');
+	var nur = localStorage.getItem('nurse');
+	var sta = localStorage.getItem('staff');
+	var adm = localStorage.getItem('admin');
+	if(!(sta==1||adm==1))
+	{
+		window.location.replace("http://127.0.0.1:5000/login/page");
+		alert("You are not Logged In!");
+	}
+    var table
+
+
+
+    function getBed() {
+
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "bed",
+            "method": "GET",
+            "headers": {
+                "cache-control": "no-cache"
+            }
+        }
+
+        $.ajax(settings).done(function (response) {
+        
+		for(i=0;i<response.length;i++){
+		response[i].answer=""
+		if(response[i].pat_id==null) {
+		response[i].answer="Empty Bed"
+		response[i].answer2=""
+		}
+		else {
+		response[i].answer="Assigned"
+		response[i].answer2="ID : "+(response[i].pat_id).toString()
+        }
+        }
+            table = $('#datatable4').DataTable({
+                "bDestroy": true,
+                'paging': true, // Table pagination
+                'ordering': true, // Column ordering
+                'info': true, // Bottom left status text
+                aaData: response,
+                   "aaSorting": [],
+                aoColumns: [
+                    {
+                        mData: 'bed_id'
+                    },
+                    {
+                        mData: 'answer'
+                    },
+                    {
+                        mData: 'answer2'
+                    }
+        ]
+            });
+
+        });
+
+
+    }
+getBed()
+}) </script>
+</body>
+
+</html>

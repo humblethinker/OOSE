@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OOSE Project</title>
+    <!-- Bootstrap Styles-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- FontAwesome Styles-->
+    <script src="https://kit.fontawesome.com/fb81515c8e.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="vendor/datepicker/build/css/bootstrap-datetimepicker.min.css">
+    <!-- Custom Styles-->
+    <link href="css/custom-styles.css" rel="stylesheet" />
+	<link rel="stylesheet" href="app/css/app.css" id="maincss">
+</head>
+
+<body>
+    <div id="wrapper" style="background-image: url('http://www.allwhitebackground.com/images/6/Medical-Background-Photo.jpg');">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                
+                <a class="navbar-brand" href="index.html">Hospital Management System</a>
+            </div>
+
+            <ul class="nav navbar-top-links navbar-right">
+           
+   
+            </ul>
+        </nav>
+        <!--/. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+
+                    <li>
+                        <a href="discharge.html"><i class="fa fa-desktop"></i> Discharge a patient</a>
+                    </li>
+					
+                    <li>
+                        
+                    </li>
+               
+                </ul>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper" style="background-image: url('https://www.philipgordts.com/wp-content/uploads/2018/03/medical-website-background-images-7.jpg');">
+                   <section>
+         <!-- Page content-->
+         <div class="content-wrapper">
+            <div class="content-heading">
+               <!-- START Language list-->
+
+               <!-- END Language list    -->
+               Patient
+               <small data-localize="dashboard.WELCOME"></small>
+                <div class="pull-right">
+                  <div class="btn-group">
+                  </div>
+               </div>
+            </div>
+           <div class="row">
+                  <div class="col-lg-12">
+                     <div class="panel panel-default"  style="padding: 15px;">
+
+                        <div class="table-responsive">
+                           <table id="datatable4" class="table table-striped">
+                              <thead>
+                                 <tr>
+                                    <th style="width:5%">Patient ID</th>
+                                    <th style="width:25%">Tests done</th>
+                                    <th style="width:25%">Diagnosis</th>
+									<th style="width:5%">Charges</th>
+                                      <th style="width:15%"></th>
+                                 </tr>
+                              </thead>
+                              <tbody></tbody>
+                           </table>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+         </div>
+      </section>
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+	<div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="modal fade">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h4 id="myModalLabel" class="modal-title">Patient</h4>
+            </div>
+            <div class="modal-body">
+               <form data-parsley-validate="" novalidate="" class="form-horizontal" id="detailform">
+                           <div class="form-group">
+                              <label class="col-lg-2 control-label">Patient ID</label>
+                              <div class="col-lg-10">
+                                 <input required type="number" name="pat_id" class="form-control" readonly>
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <label class="col-lg-2 control-label">Tests</label>
+                              <div class="col-lg-10">
+                                 <input required type="text" name="tests" class="form-control" placeholder="Test List">
+                              </div>
+                           </div>
+						    <div class="form-group">
+                              <label class="col-lg-2 control-label">Diagnosis</label>
+                              <div class="col-lg-10">
+                                 <input required type="text" name="diagnosis" class="form-control" placeholder="Diagnosis reports">
+                              </div>
+                           </div>
+                         <div class="form-group">
+                              <label class="col-lg-2 control-label">Charges (₹)</label>
+                              <div class="col-lg-10">
+                                 <input required type="number" name="charges" class="form-control" placeholder="Total charges" maxlength="10">
+                              </div>
+                           </div>
+                        </form>
+
+
+
+            </div>
+            <div class="modal-footer">
+               <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
+               <button id="savethepatient" type="button" class="btn btn-primary">Save changes</button>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- MODERNIZR-->
+   <script src="vendor/modernizr/modernizr.custom.js"></script>
+    <!-- =============== VENDOR SCRIPTS ===============-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	 <!-- JQUERY-->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"></script>
+   <!-- STORAGE API-->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-storage-api/1.9.2/jquery.storageapi.js"></script>
+       <!-- Bootstrap Js -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+      <!-- BOOTSTRAP-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.serializeJSON/3.1.1/jquery.serializejson.js"></script>
+   <!-- JQUERY EASING-->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.compatibility.min.js"></script>
+   <!-- ANIMO-->
+   <script src="vendor/animo.js/animo.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-localize/0.1.0/jquery.localize.js"></script>
+   <script src="vendor/datepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+   <!-- =============== PAGE VENDOR SCRIPTS ===============-->
+   <!-- =============== APP SCRIPTS ===============-->
+   <script src="app/js/app.js"></script>
+
+    <!-- Custom Js -->
+    <script src="js/home.js"></script>
+   <script>
+   $(document).ready(function () {
+    var doc = localStorage.getItem('doctor');
+	var nur = localStorage.getItem('nurse');
+	var sta = localStorage.getItem('staff');
+	var adm = localStorage.getItem('admin');
+	if(!(doc == 1||nur==1||adm==1))
+	{
+		window.location.replace("http://127.0.0.1:5000/login/page");
+		alert("You are not Logged In!");
+	}
+    var table
+
+
+    function updatePatient(data, id) {
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "patient2/" + id,
+            "method": "PUT",
+            "headers": {
+                "content-type": "application/json",
+                "cache-control": "no-cache"
+            },
+            "processData": false,
+            "data": JSON.stringify(data)
+        }
+
+        $.ajax(settings).done(function (response) {
+            $('#myModal').modal('hide');;
+            $.notify("Patient Medical details Updated Successfully", {"status":"success"});
+            table.destroy();
+            $('#datatable4 tbody').empty(); // empty in case the columns change
+            getPatient()
+        });
+
+
+    }
+
+    function getPatient() {
+
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "patient",
+            "method": "GET",
+            "headers": {
+                "cache-control": "no-cache"
+            }
+        }
+
+        $.ajax(settings).done(function (response) {
+
+
+
+            table = $('#datatable4').DataTable({
+                "bDestroy": true,
+                'paging': true, // Table pagination
+                'ordering': true, // Column ordering
+                'info': true, // Bottom left status text
+                aaData: response,
+                 "aaSorting": [],
+                aoColumns: [
+                    {
+                        mData: 'pat_id'
+                    },
+                    {
+                        mData: 'tests'
+                    },
+                    {
+                        mData: 'diagnosis'
+                    },
+					{
+                        mData: 'charges'
+                    },
+                    {
+                        mRender: function (o) {
+                            return '<button class="btn-xs btn btn-info btn-edit" type="button">Edit</button>';
+                        }
+                    }
+        ]
+            });
+            $('.btn-edit').one("click", function(e) {
+                var data = table.row($(this).parents('tr')).data();
+                $('#myModal').modal().one('shown.bs.modal', function (e) {
+                    for (var key in data) {
+                        $("[name=" + key + "]").val(data[key])
+                    }
+                    $("#savethepatient").off("click").on("click", function(e) {
+                    var instance = $('#detailform').parsley();
+                    instance.validate()
+                    console.log(instance.isValid())
+                    if(instance.isValid()){
+                        jsondata = $('#detailform').serializeJSON();
+                        updatePatient(jsondata, data.pat_id)
+                        }
+
+                    })
+                })
+
+
+
+            });
+
+        });
+
+
+    }
+
+getPatient()
+})
+   </script>
+</body>
+
+</html>

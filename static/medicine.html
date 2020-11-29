@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Matrix Free Bootstrap Admin Template</title>
+    <!-- Bootstrap Styles-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- FontAwesome Styles-->
+    <script src="https://kit.fontawesome.com/fb81515c8e.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="vendor/datepicker/build/css/bootstrap-datetimepicker.min.css">
+    <!-- Custom Styles-->
+    <link href="css/custom-styles.css" rel="stylesheet" />
+	<link rel="stylesheet" href="app/css/app.css" id="maincss">
+</head>
+
+<body>
+    <div id="wrapper" style="background-image: url('http://www.allwhitebackground.com/images/6/Medical-Background-Photo.jpg');">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                
+                <a class="navbar-brand" href="index.html">Hospital Management System</a>
+            </div>
+
+            <ul class="nav navbar-top-links navbar-right">
+           
+   
+            </ul>
+        </nav>
+        <!--/. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+
+                    <li>
+                        <a href="discharge.html"><i class="fa fa-desktop"></i> Discharge a patient</a>
+                    </li>
+					
+                    <li>
+                        
+                    </li>
+                
+                </ul>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper" style="background-image: url('https://www.philipgordts.com/wp-content/uploads/2018/03/medical-website-background-images-7.jpg');">
+              <section>
+         <!-- Page content-->
+         <div class="content-wrapper">
+            <div class="content-heading">
+               <!-- START Language list-->
+
+               <!-- END Language list    -->
+              Medicine
+                <div class="float-right">
+                  <div class="btn-group">
+                     <button  id="addmedicine" class="btn btn-outline-success my-2 my-sm-0" type="button">Add Medicine</button>
+
+                  </div>
+               </div>
+            </div>
+           <div class="row">
+                  <div class="col">
+                     <div class="card" style="padding: 15px;">
+
+                        <div class="table-responsive">
+                           <table id="datatable4" class="display">
+                              <thead>
+                                 <tr>
+                                    <th style="width:20%">Medicine Name</th>
+                                    <th style="width:25%">Uses</th>
+                                    <th style="width:15%">Quantity</th>
+                                      <th style="width:15%"></th>
+									  <th style="width:15%"></th>
+                                 </tr>
+                              </thead>
+                              <tbody></tbody>
+                           </table>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+         </div>
+      </section>
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+	    <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="modal fade">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h4 id="myModalLabel" class="modal-title col-md-10" style="float: left;">Medicine</h4>
+            </div>
+            <div class="modal-body">
+               <form data-parsley-validate="" novalidate="" class="form-horizontal" id="detailform">
+                           <div class="form-group">
+                              <label class="col-lg-2 control-label">Medicine name</label>
+                              <div class="col-lg-10">
+                                 <input required type="text" name="med_name" class="form-control" placeholder="Medicine Name">
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <label class="col-lg-2 control-label">Uses</label>
+                              <div class="col-lg-10">
+                                 <input required type="text" name="uses" class="form-control" placeholder="Uses">
+                              </div>
+                           </div>
+
+                  <div class="form-group">
+                              <label class="col-lg-2 control-label">Available quantity</label>
+
+                                     <div class="col-lg-10">
+                                 <input required type="number" name="quant" class="form-control" placeholder="Quantity">
+                              </div>
+
+                           </div>
+
+
+
+                        </form>
+
+
+
+            </div>
+            <div class="modal-footer">
+               <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
+               <button id="savemedicine" type="button" class="btn btn-primary">Save changes</button>
+            </div>
+         </div>
+      </div>
+   </div>
+    <!-- /. WRAPPER  -->
+   <!-- MODERNIZR-->
+   <script src="vendor/modernizr/modernizr.custom.js"></script>
+    <!-- =============== VENDOR SCRIPTS ===============-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	 <!-- JQUERY-->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"></script>
+   <!-- STORAGE API-->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-storage-api/1.9.2/jquery.storageapi.js"></script>
+       <!-- Bootstrap Js -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+      <!-- BOOTSTRAP-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.serializeJSON/3.1.1/jquery.serializejson.js"></script>
+   <!-- JQUERY EASING-->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.compatibility.min.js"></script>
+   <!-- ANIMO-->
+   <script src="vendor/animo.js/animo.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-localize/0.1.0/jquery.localize.js"></script>
+   <script src="vendor/datepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+   <!-- =============== PAGE VENDOR SCRIPTS ===============-->
+   <!-- =============== APP SCRIPTS ===============-->
+   <script src="app/js/app.js"></script>
+
+    <!-- Custom Js -->
+    <script src="js/home.js"></script>
+    <script>$(document).ready(function () {
+    var doc = localStorage.getItem('doctor');
+	var nur = localStorage.getItem('nurse');
+	var sta = localStorage.getItem('staff');
+	var adm = localStorage.getItem('admin');
+	if(!(doc == 1||nur==1||sta==1||adm==1))
+	{
+		window.location.replace("http://127.0.0.1:5000/login/page");
+		alert("You are not Logged In!");
+	}
+    var table
+
+
+    function addMedicine(data) {
+
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "medicine",
+            "method": "POST",
+            "headers": {
+                "content-type": "application/json",
+                "cache-control": "no-cache"
+            },
+            "processData": false,
+            "data": JSON.stringify(data)
+        }
+
+        $.ajax(settings).done(function (response) {
+         $.notify("Medicine Added Successfully", {"status":"success"});
+
+            $('.modal.in').modal('hide')
+            table.destroy();
+            $('#datatable4 tbody').empty(); // empty in case the columns change
+            getMedicine()
+        });
+
+    }
+
+    function deleteMedicine(id) {
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "medicine/" + id,
+            "method": "DELETE",
+            "headers": {
+                "cache-control": "no-cache"
+            }
+        }
+
+swal({
+    title: "Are you sure?",
+    text: "You will not be able to recover this data",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+})
+.then((willDelete) => {
+ $.ajax(settings).done(function (response) {
+   swal("Deleted!", "Medicine has been deleted.", "success");
+            table.destroy();
+            $('#datatable4 tbody').empty(); // empty in case the columns change
+            getMedicine()
+        });
+
+
+});
+
+    }
+
+
+    function updateMedicine(data, id) {
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "medicine/" + id,
+            "method": "PUT",
+            "headers": {
+                "content-type": "application/json",
+                "cache-control": "no-cache"
+            },
+            "processData": false,
+            "data": JSON.stringify(data)
+        }
+
+        $.ajax(settings).done(function (response) {
+            $('.modal.in').modal('hide')
+            $.notify("Medicine Updated Successfully", {"status":"success"});
+            table.destroy();
+            $('#datatable4 tbody').empty(); // empty in case the columns change
+            getMedicine()
+        });
+
+
+    }
+    function getMedicine() {
+
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "medicine",
+            "method": "GET",
+            "headers": {
+                "cache-control": "no-cache"
+            }
+        }
+    
+    $.ajax(settings).done(function (response) {
+
+            table = $('#datatable4').DataTable({
+                "bDestroy": true,
+                'paging': true, // Table pagination
+                'ordering': true, // Column ordering
+                'info': true, // Bottom left status text
+                aaData: response,
+                   "aaSorting": [],
+                aoColumns: [
+                    {
+                        mData: 'med_name'
+                    },
+                    {
+                        mData: 'uses'
+                    },
+                    {
+                        mData: 'quant'
+                    },
+					{
+                        mRender: function (o) {
+                            return '<button class="btn-xs btn btn-info btn-edit" type="button">Edit</button>';
+                        }
+                    },
+                    {
+                        mRender: function (o) {
+                            return '<button class="btn-xs btn btn-danger delete-btn" type="button">Delete</button>';
+                        }
+                    }
+					
+        ]
+            });
+            $('#datatable4 tbody').on('click', '.delete-btn', function () {
+                var data = table.row($(this).parents('tr')).data();
+                console.log(data)
+                deleteMedicine(data.med_id)
+
+            });
+            $('.btn-edit').one("click", function(e) {
+                var data = table.row($(this).parents('tr')).data();
+                $('#myModal').modal().one('shown.bs.modal', function (e) {
+
+                    for (var key in data) {
+                        $("[name=" + key + "]").val(data[key])
+                    }
+                    $("#savemedicine").off("click").on("click", function(e) {
+                    var instance = $('#detailform').parsley();
+                    instance.validate()
+                    console.log(instance.isValid())
+                    if(instance.isValid()){
+                        jsondata = $('#detailform').serializeJSON();
+                        updateMedicine(jsondata, data.med_id);
+						$('#myModal').modal('hide');
+                       
+                        }
+
+                    })
+                })
+
+            });
+
+       });
+
+    }
+
+
+
+
+    $("#addmedicine").click(function () {
+       
+        $('#myModal').modal().one('shown.bs.modal', function (e) {
+       
+	  });
+            $("#savemedicine").off("click").on("click", function(e) {
+
+
+            var instance = $('#detailform').parsley();
+            instance.validate()
+                    if(instance.isValid()){
+                jsondata = $('#detailform').serializeJSON();
+                addMedicine(jsondata)
+                }
+
+            })
+
+        })
+
+
+
+
+getMedicine()
+})
+</script>
+
+</body>
+
+</html>
